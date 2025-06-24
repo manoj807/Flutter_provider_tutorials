@@ -15,7 +15,7 @@ import 'example_two/example_two_screen.dart';
 import 'example_two/provider/example_two_provider.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -41,9 +41,9 @@ class MyApp extends StatelessWidget {
     );
   }*/
 
-//for single provider
+  //for single provider
 
-/*  @override
+  /*  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<CounterProvider>(
       create: (_) => CounterProvider(),
@@ -57,16 +57,25 @@ class MyApp extends StatelessWidget {
     );
   }*/
 
- //for multiprovider
+  //for multiprovider
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<CounterProvider>(create: (_) => CounterProvider(),),
-        ChangeNotifierProvider<ExampleOneProvider>(create: (_)=> ExampleOneProvider(),),
-        ChangeNotifierProvider<ExampleTwoProvider>(create: (_)=> ExampleTwoProvider(),),
-        ChangeNotifierProvider<AuthProvider>(create: (_)=> AuthProvider(),),
-         ChangeNotifierProvider<CounterProvider>(create: (_) => CounterProvider()), // Uncomment if you have a Counter provider
+        ChangeNotifierProvider<CounterProvider>(
+          create: (_) => CounterProvider(),
+        ),
+        ChangeNotifierProvider<ExampleOneProvider>(
+          create: (_) => ExampleOneProvider(),
+        ),
+        ChangeNotifierProvider<ExampleTwoProvider>(
+          create: (_) => ExampleTwoProvider(),
+        ),
+        ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+        ChangeNotifierProvider<CounterProvider>(
+          create: (_) => CounterProvider(),
+        ),
+        // Uncomment if you have a Counter provider
         // Add other providers here if needed
       ],
       child: MaterialApp(
@@ -84,56 +93,85 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("HomePage build called");
-   // final counter = Provider.of<Counter>(context);
+    // final counter = Provider.of<Counter>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Screen"),
-      ),
+      appBar: AppBar(title: Text("Home Screen")),
       body: ListView.builder(
         itemCount: list.length,
-        itemBuilder: (context , index) {
-        return ListTile(
-          title: Text(list[index]),
-          leading: Icon(Icons.star),
-          trailing: Icon(Icons.arrow_forward_ios),
-          onTap: () {
-            nivigation(context, list[index]);
-          },
-        );
-      },
-    ),
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(list[index]),
+            leading: Icon(Icons.star),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              nivigation(context, list[index]);
+            },
+          );
+        },
+      ),
     );
-
   }
 
-  List<String> list= ["why",  "stateless_widget","stateful_widget","ValueNotifierListener",
-    "example_one", "example_two","counter", "auth"];
+  List<String> list = [
+    "why",
+    "stateless_widget",
+    "stateful_widget",
+    "ValueNotifierListener",
+    "example_one",
+    "example_two",
+    "counter",
+    "auth",
+  ];
 
-  void nivigation(BuildContext buildContext, String type)
-  {
-    switch(type)
-        {
-          case "counter":
-          Navigator.push(buildContext, MaterialPageRoute(builder: (context) => CounterScreen()));
-           break;
-          case "why":
-            Navigator.push(buildContext, MaterialPageRoute(builder: (context) => WhyProviderScreen()));
-         case "stateless_widget":
-             Navigator.push(buildContext, MaterialPageRoute(builder: (context) => StateLessWidgetScreen()));
-        case "stateful_widget":
-          Navigator.push(buildContext, MaterialPageRoute(builder: (context) => StateFullWidgetScreen()));
-      case "ValueNotifierListener":
-        Navigator.push(buildContext, MaterialPageRoute(builder: (context) => ValueNotifierListener()));
-      case "example_one":
-        Navigator.push(buildContext, MaterialPageRoute(builder: (context) => ExampleOneScreen()));
-      case "example_two":
-            Navigator.push(buildContext, MaterialPageRoute(builder: (context) => ExampleTwoScreen()));
-      case "auth":
-        Navigator.push(buildContext, MaterialPageRoute(builder: (context) => LoginScreen()));
+  void nivigation(BuildContext buildContext, String type) {
+    switch (type) {
+      case "counter":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => CounterScreen()),
+        );
         break;
-          default:
-            Navigator.push(buildContext, MaterialPageRoute(builder: (context) => CounterScreen()));
-       }
-
+      case "why":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => WhyProviderScreen()),
+        );
+      case "stateless_widget":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => StateLessWidgetScreen()),
+        );
+      case "stateful_widget":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => StateFullWidgetScreen()),
+        );
+      case "ValueNotifierListener":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => ValueNotifierListener()),
+        );
+      case "example_one":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => ExampleOneScreen()),
+        );
+      case "example_two":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => ExampleTwoScreen()),
+        );
+      case "auth":
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
+        break;
+      default:
+        Navigator.push(
+          buildContext,
+          MaterialPageRoute(builder: (context) => CounterScreen()),
+        );
+    }
   }
 }
